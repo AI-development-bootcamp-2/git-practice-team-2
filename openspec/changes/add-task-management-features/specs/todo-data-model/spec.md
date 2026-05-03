@@ -1,27 +1,42 @@
-## MODIFIED Requirements
+## MODIFIED Requirements — Guy
 
-### Requirement: Todo Data Model
-Each todo SHALL have id, title, status, priority, createdAt, updatedAt, and optionally
-dueDate and tags fields.
+### Requirement: Expanded Status Enum
+The todo status field SHALL support four values to reflect a real workflow lifecycle.
 
-#### Scenario: New todo structure
-- **WHEN** a todo is created
-- **THEN** it has id (UUID), title (string), status (`todo|in-progress|review|done`),
-  priority (`low|medium|high`), createdAt (ISO date), updatedAt (ISO date), and optionally
-  dueDate (ISO date string) and tags (array of `{ name, color }`)
+#### Scenario: Valid status values
+- **WHEN** a todo is created or updated
+- **THEN** the status field accepts only `todo | in-progress | review | done`
 
 #### Scenario: Default status
 - **WHEN** a todo is created without a status field
 - **THEN** status defaults to `"todo"`
 
-#### Scenario: Default priority
-- **WHEN** a todo is created without a priority field
-- **THEN** priority defaults to `"medium"`
+#### Scenario: Backward compatibility
+- **WHEN** existing todos in storage have status `"todo"` or `"done"`
+- **THEN** they are still valid and load without error
 
-#### Scenario: Optional due date
-- **WHEN** a todo is created without a dueDate field
-- **THEN** dueDate is absent from the stored object
+### Requirement: Server Validation
+The server SHALL enforce the expanded status enum on create and update.
 
-#### Scenario: Tags default
-- **WHEN** a todo is created without a tags field
-- **THEN** tags defaults to an empty array `[]`
+#### Scenario: Invalid status rejected on create
+- **WHEN** POST /api/todos is called with a status outside `todo|in-progress|review|done`
+- **THEN** 400 status with a descriptive error message is returned
+
+#### Scenario: Invalid status rejected on update
+- **WHEN** PUT /api/todos/:id is called with a status outside `todo|in-progress|review|done`
+- **THEN** 400 status with a descriptive error message is returned
+
+#### Scenario: Update non-existent todo
+- **WHEN** PUT /api/todos/:id is called with an unknown ID
+- **THEN** 404 status with error message is returned
+
+### Requirement: Status Display in TodoItem
+The TodoItem component SHALL visually indicate the current status of each todo.
+
+#### Scenario: Status badge rendered
+- **WHEN** a todo is rendered in the list view
+- **THEN** a badge or label shows its current status (e.g. "In Progress", "Review", "Done")
+
+#### Scenario: Done styling unchanged
+- **WHEN** a todo has status `"done"`
+- **THEN** it retains existing strikethrough / muted styling
