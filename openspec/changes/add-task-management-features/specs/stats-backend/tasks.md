@@ -9,8 +9,8 @@
 
 ## 2. Route
 
-- [ ] 2.1 Register `GET /api/todos/stats` in `server/src/routes/todos.js` **before** the `/:id` route
-- [ ] 2.2 Call `todoService.getStats()` and return the result with status 200
+- [x] 2.1 Register `GET /api/todos/stats` in `server/src/routes/todos.js` **before** the `/:id` route
+- [x] 2.2 Call `todoService.getStats()` and return the result with status 200
 
 ## 3. Verification
 
