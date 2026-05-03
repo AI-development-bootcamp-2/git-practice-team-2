@@ -8,7 +8,7 @@
   - *Ensure create endpoint allows receiving an initial status*
 - [x] Replace toggle button with a status dropdown in `client/src/components/TodoItem.jsx`
 - [x] Update `client/src/components/TodoList.jsx` to render 4 distinct status sections
-- [ ] Verify existing todos with `todo` / `done` status still load and display correctly
+- [x] Verify existing todos with `todo` / `done` status still load and display correctly
 
 **Spec:** `specs/todo-data-model/spec.md`
 
