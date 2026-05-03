@@ -65,5 +65,16 @@ export const todoService = {
     todos.splice(index, 1);
     writeTodos(todos);
     return true;
+  },
+
+  getStats() {
+    const todos = readTodos();
+    const total = todos.length;
+    const byStatus = { 'todo': 0, 'in-progress': 0, 'review': 0, 'done': 0 };
+    for (const todo of todos) {
+      if (todo.status in byStatus) byStatus[todo.status]++;
+    }
+    const completionPct = total === 0 ? 0 : Math.round(byStatus.done / total * 1000) / 10;
+    return { total, byStatus, completionPct };
   }
 };
