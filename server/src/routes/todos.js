@@ -1,4 +1,4 @@
-import { todoService } from '../services/todoService.js';
+import { todoService, VALID_STATUSES } from '../services/todoService.js';
 
 export default async function todosRoutes(fastify, options) {
 
@@ -23,16 +23,23 @@ export default async function todosRoutes(fastify, options) {
 
   // POST /api/todos - Create new todo
   fastify.post('/', async (request, reply) => {
-    const { title } = request.body;
+    const { title, status } = request.body;
     if (!title || !title.trim()) {
       return reply.status(400).send({ error: 'Title is required' });
     }
-    const todo = todoService.create({ title: title.trim() });
+    if (status && !VALID_STATUSES.includes(status)) {
+      return reply.status(400).send({ error: `Invalid status. Must be one of: ${VALID_STATUSES.join(', ')}` });
+    }
+    const todo = todoService.create({ title: title.trim(), status });
     return reply.status(201).send(todo);
   });
 
   // PUT /api/todos/:id - Update todo
   fastify.put('/:id', async (request, reply) => {
+    const { status } = request.body;
+    if (status && !VALID_STATUSES.includes(status)) {
+      return reply.status(400).send({ error: `Invalid status. Must be one of: ${VALID_STATUSES.join(', ')}` });
+    }
     const todo = todoService.update(request.params.id, request.body);
     if (!todo) {
       return reply.status(404).send({ error: 'Todo not found' });

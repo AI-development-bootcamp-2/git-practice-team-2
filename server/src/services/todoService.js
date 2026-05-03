@@ -19,6 +19,8 @@ function writeTodos(todos) {
   writeFileSync(DATA_FILE, JSON.stringify(todos, null, 2));
 }
 
+export const VALID_STATUSES = ['todo', 'in-progress', 'review', 'done'];
+
 export const todoService = {
   getAll() {
     return readTodos();
@@ -34,7 +36,7 @@ export const todoService = {
     const newTodo = {
       id: crypto.randomUUID(),
       title: todoData.title,
-      status: 'todo',
+      status: todoData.status || 'todo',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     };

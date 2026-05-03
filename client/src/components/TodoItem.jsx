@@ -1,15 +1,19 @@
 import React from 'react';
 
-function TodoItem({ todo, onToggle, onDelete }) {
+function TodoItem({ todo, onStatusChange, onDelete }) {
   return (
     <div className={`todo-item ${todo.status === 'done' ? 'done' : ''}`}>
-      <button
-        className="toggle-btn"
-        onClick={() => onToggle(todo.id)}
-        aria-label={todo.status === 'done' ? 'Mark as pending' : 'Mark as done'}
+      <select
+        className="status-dropdown"
+        value={todo.status}
+        onChange={(e) => onStatusChange(todo.id, e.target.value)}
+        aria-label="Change status"
       >
-        {todo.status === 'done' ? '✓' : '○'}
-      </button>
+        <option value="todo">To Do</option>
+        <option value="in-progress">In Progress</option>
+        <option value="review">Review</option>
+        <option value="done">Done</option>
+      </select>
 
       <span className="todo-title">{todo.title}</span>
 
