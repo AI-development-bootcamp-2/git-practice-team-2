@@ -14,5 +14,5 @@
 
 ## 3. Verification
 
-- [ ] 3.1 Manually call the endpoint with existing todos and confirm all three fields match expected values
-- [ ] 3.2 Clear todos.json to `[]` and confirm empty-state response (`total: 0`, all byStatus counts `0`, `completionPct: 0`)
+- [x] 3.1 Manually call the endpoint with existing todos and confirm all three fields match expected values
+- [x] 3.2 Clear todos.json to `[]` and confirm empty-state response (`total: 0`, all byStatus counts `0`, `completionPct: 0`)
