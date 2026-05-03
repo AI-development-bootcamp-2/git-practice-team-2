@@ -1,7 +1,7 @@
 import React from 'react';
 import TodoItem from './TodoItem';
 
-function TodoList({ todos, onToggle, onDelete }) {
+function TodoList({ todos, onStatusChange, onDelete }) {
   if (todos.length === 0) {
     return (
       <div className="empty-state">
@@ -22,7 +22,7 @@ function TodoList({ todos, onToggle, onDelete }) {
             <TodoItem
               key={todo.id}
               todo={todo}
-              onToggle={onToggle}
+              onStatusChange={onStatusChange}
               onDelete={onDelete}
             />
           ))}
@@ -36,7 +36,7 @@ function TodoList({ todos, onToggle, onDelete }) {
             <TodoItem
               key={todo.id}
               todo={todo}
-              onToggle={onToggle}
+              onStatusChange={onStatusChange}
               onDelete={onDelete}
             />
           ))}
