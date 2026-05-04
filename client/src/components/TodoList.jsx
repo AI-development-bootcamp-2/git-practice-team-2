@@ -1,7 +1,7 @@
 import React from 'react';
 import TodoItem from './TodoItem';
 
-function TodoList({ todos, onToggle, onDelete }) {
+function TodoList({ todos, onStatusChange, onDelete }) {
   if (todos.length === 0) {
     return (
       <div className="empty-state">
@@ -10,38 +10,33 @@ function TodoList({ todos, onToggle, onDelete }) {
     );
   }
 
-  const pendingTodos = todos.filter(t => t.status === 'todo');
-  const doneTodos = todos.filter(t => t.status === 'done');
+  const sections = [
+    { title: 'To Do', status: 'todo' },
+    { title: 'In Progress', status: 'in-progress' },
+    { title: 'Review', status: 'review' },
+    { title: 'Done', status: 'done' }
+  ];
 
   return (
     <div className="todo-list">
-      {pendingTodos.length > 0 && (
-        <section className="todo-section">
-          <h2>To Do ({pendingTodos.length})</h2>
-          {pendingTodos.map(todo => (
-            <TodoItem
-              key={todo.id}
-              todo={todo}
-              onToggle={onToggle}
-              onDelete={onDelete}
-            />
-          ))}
-        </section>
-      )}
+      {sections.map(section => {
+        const sectionTodos = todos.filter(t => t.status === section.status);
+        if (sectionTodos.length === 0) return null;
 
-      {doneTodos.length > 0 && (
-        <section className="todo-section">
-          <h2>Done ({doneTodos.length})</h2>
-          {doneTodos.map(todo => (
-            <TodoItem
-              key={todo.id}
-              todo={todo}
-              onToggle={onToggle}
-              onDelete={onDelete}
-            />
-          ))}
-        </section>
-      )}
+        return (
+          <section key={section.status} className="todo-section">
+            <h2>{section.title} ({sectionTodos.length})</h2>
+            {sectionTodos.map(todo => (
+              <TodoItem
+                key={todo.id}
+                todo={todo}
+                onStatusChange={onStatusChange}
+                onDelete={onDelete}
+              />
+            ))}
+          </section>
+        );
+      })}
     </div>
   );
 }

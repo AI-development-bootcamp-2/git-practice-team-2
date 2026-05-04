@@ -30,13 +30,21 @@ The server SHALL enforce the expanded status enum on create and update.
 - **WHEN** PUT /api/todos/:id is called with an unknown ID
 - **THEN** 404 status with error message is returned
 
-### Requirement: Status Display in TodoItem
-The TodoItem component SHALL visually indicate the current status of each todo.
+### Requirement: Status Display and Interaction in TodoItem
+The TodoItem component SHALL visually indicate the current status of each todo and allow the user to change it.
 
-#### Scenario: Status badge rendered
+#### Scenario: Status dropdown rendered
 - **WHEN** a todo is rendered in the list view
-- **THEN** a badge or label shows its current status (e.g. "In Progress", "Review", "Done")
+- **THEN** a dropdown menu (`<select>`) is provided to change the status between `todo`, `in-progress`, `review`, and `done`
+- **AND** a badge or label shows its current status (e.g. "In Progress", "Review", "Done")
 
 #### Scenario: Done styling unchanged
 - **WHEN** a todo has status `"done"`
 - **THEN** it retains existing strikethrough / muted styling
+
+### Requirement: List View Grouping
+The TodoList component SHALL group todos into sections based on their status.
+
+#### Scenario: Status sections rendered
+- **WHEN** todos are rendered in the list view
+- **THEN** they are divided into four distinct sections: "To Do", "In Progress", "Review", and "Done"

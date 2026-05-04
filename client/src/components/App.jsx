@@ -35,10 +35,17 @@ function App() {
     }
   };
 
+<<<<<<< HEAD
   const handleDelete = async (id) => {
     try {
       await api.todos.delete(id);
       setTodos(todos.filter(t => t.id !== id));
+=======
+  const handleStatusChange = async (id, newStatus) => {
+    try {
+      const updated = await api.todos.update(id, { status: newStatus });
+      setTodos(todos.map(t => t.id === id ? updated : t));
+>>>>>>> Development
     } catch (err) {
       setError(err.message);
     }
