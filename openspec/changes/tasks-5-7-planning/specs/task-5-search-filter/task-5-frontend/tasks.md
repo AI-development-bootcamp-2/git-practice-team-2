@@ -8,7 +8,7 @@
 ## New components
 
 - [x] D-5-1: Create `client/src/components/SearchBar.jsx` — controlled text input, props: `value`, `onChange`, placeholder `"Search tasks..."`
-- [ ] D-5-2: Create `client/src/components/StatusFilter.jsx` — `<select>` dropdown with options All / To Do / In Progress / Review / Done; props: `value`, `onChange`; `All` maps to `null`
+- [x] D-5-2: Create `client/src/components/StatusFilter.jsx` — `<select>` dropdown with options All / To Do / In Progress / Review / Done; props: `value`, `onChange`; `All` maps to `null`
 - [ ] D-5-3: Create `client/src/components/PriorityFilter.jsx` — `<select>` dropdown with options All / High / Medium / Low; props: `value`, `onChange`; `All` maps to `null`; no-op when `todo.priority` is undefined
 - [ ] D-5-4: Create `client/src/components/FilterBar.jsx` — composes `SearchBar`, `StatusFilter`, and `PriorityFilter` in one row; props: `searchTerm`, `onSearchChange`, `filterStatus`, `onStatusChange`, `filterPriority`, `onPriorityChange`
 
