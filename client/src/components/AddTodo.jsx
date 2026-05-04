@@ -9,8 +9,9 @@ function AddTodo({ onAdd }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (title.trim()) {
-      onAdd(title.trim());
+      onAdd({ title: title.trim(), dueDate: dueDate ? dueDate.toLocaleDateString('en-CA') : null });
       setTitle('');
+      setDueDate(null);
     }
   };
 

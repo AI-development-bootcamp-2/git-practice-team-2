@@ -29,9 +29,9 @@ function App() {
     }
   };
 
-  const handleAdd = async (title) => {
+  const handleAdd = async ({ title, dueDate }) => {
     try {
-      const newTodo = await api.todos.create(title);
+      const newTodo = await api.todos.create({ title, dueDate });
       setTodos([...todos, newTodo]);
     } catch (err) {
       setError(err.message);
