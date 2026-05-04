@@ -10,11 +10,19 @@
 
 | File | Change |
 |------|--------|
-| `client/src/components/AddTodo.jsx` | Add optional date input field |
-| `client/src/components/TodoItem.jsx` | Display `dueDate`, show overdue indicator |
+| `client/src/components/AddTodo.jsx` | Add `react-datepicker` with clear button |
+| `client/src/components/TodoItem.jsx` | Display `dueDate` (DD/MM/YYYY), show light red highlight if overdue |
 | `client/src/services/api.js` | Pass `dueDate` from `create()` |
+| `client/package.json` | Add `react-datepicker` dependency |
 
-No new files needed for this task.
+---
+
+## Step D-6-0 — Install Dependencies
+
+Install `react-datepicker`:
+```bash
+cd client && npm install react-datepicker
+```
 
 ---
 
@@ -22,10 +30,16 @@ No new files needed for this task.
 
 **File:** `client/src/components/AddTodo.jsx`
 
-- Add a second state: `const [dueDate, setDueDate] = useState('')`
-- Add a `<input type="date" />` field below the title input (optional — no required attribute)
-- On submit, pass `{ title, dueDate: dueDate || null }` to `onAdd`
-- Clear `dueDate` state on submit along with title
+- Import `DatePicker` from `react-datepicker` and its CSS.
+- Add a second state: `const [dueDate, setDueDate] = useState(null)`
+- Add the `DatePicker` component:
+  - `selected={dueDate}`
+  - `onChange={(date) => setDueDate(date)}`
+  - `dateFormat="dd/MM/yyyy"`
+  - `isClearable` (to allow removal)
+  - `placeholderText="Add due date"`
+- On submit, pass `{ title, dueDate: dueDate ? dueDate.toISOString() : null }` to `onAdd`
+- Clear `dueDate` state on submit.
 
 **What NOT to change:**
 - The `onAdd` prop signature changes (now receives an object instead of a plain string).  
@@ -78,9 +92,9 @@ const handleAdd = async ({ title, dueDate }) => {
 
 **File:** `client/src/components/TodoItem.jsx`
 
-- If `todo.dueDate` is set, display it as a human-readable date (e.g. `"Due Jun 15"`)
-- Format suggestion: `new Date(todo.dueDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })`
-- Show below the title, in muted/small text
+- If `todo.dueDate` is set, display it formatted as `DD/MM/YYYY`.
+- Format suggestion: `new Date(todo.dueDate).toLocaleDateString('en-GB')`
+- Show below the title, in muted/small text.
 
 ---
 
@@ -89,15 +103,18 @@ const handleAdd = async ({ title, dueDate }) => {
 **File:** `client/src/components/TodoItem.jsx`
 
 Overdue logic:
-```
+```javascript
 const isOverdue = (todo) => {
   if (!todo.dueDate || todo.status === 'done') return false;
-  return new Date(todo.dueDate) < new Date(new Date().toDateString());
+  const today = new Date();
+  today.setHours(0,0,0,0);
+  return new Date(todo.dueDate) < today;
 };
 ```
 
-- If overdue: show a small red label or badge (e.g. `"Overdue"`) next to the due date
-- Do not hide or disable the todo — only add the visual indicator
+- If overdue: 
+  - Show a small red label (e.g. `"Overdue"`)
+  - Apply a light background highlight to the entire `.todo-item` container (e.g., `background-color: #fff5f5`).
 
 ---
 
@@ -106,10 +123,10 @@ const isOverdue = (todo) => {
 | Test | Expected |
 |------|----------|
 | Create todo without date | No due date shown in card |
-| Create todo with future date | Date shown, no overdue indicator |
-| Create todo with past date, status `todo` | Date shown + "Overdue" label |
-| Create todo with past date, status `done` | Date shown, no overdue indicator |
-| Update status to `done` on overdue todo | Overdue indicator disappears |
+| Create todo with future date | Date shown as DD/MM/YYYY, no overdue indicator |
+| Create todo with past date, status `todo` | Date shown + "Overdue" label + light red background |
+| Create todo with past date, status `done` | Date shown, no overdue indicator/highlight |
+| Update status to `done` on overdue todo | Overdue indicator and highlight disappear |
 | Submit form with date → clear form | Date field resets to empty |
 
 ---

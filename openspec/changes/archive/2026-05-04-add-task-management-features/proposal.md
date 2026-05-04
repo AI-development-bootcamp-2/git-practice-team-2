@@ -9,7 +9,7 @@ teams to track work across a real workflow lifecycle and practice Git collaborat
 - **BREAKING** Extended status enum: `todo | in-progress | review | done` (replaces `todo | done`)
 - **BREAKING** Server validation updated to accept new status values
 - Added optional `priority` field (`low | medium | high`, default `medium`)
-- Added optional `dueDate` field (ISO date string)
+- Added optional `dueDate` field (date string in **DD-MM-YYYY** format, settable during creation and editable on the Kanban board). Overdue tasks are highlighted with a **red bold "Overdue"** label (considered overdue the day after the due date).
 - Added optional `tags` array (name + color per tag)
 - New GET /api/todos/stats endpoint returning aggregate metrics
 - New Kanban Board view with one column per status

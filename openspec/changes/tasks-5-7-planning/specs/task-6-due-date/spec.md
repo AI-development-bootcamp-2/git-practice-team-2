@@ -27,7 +27,7 @@ Add an optional `dueDate` field to the todo object. Allow setting it on create a
 
 | Rule | Detail |
 |------|--------|
-| Format | ISO 8601 date string, e.g. `"2026-06-15"` or `"2026-06-15T00:00:00.000Z"` |
+| Format | ISO 8601 date string for storage (e.g. `"2026-06-15"`). Displayed as `DD/MM/YYYY` in UI. |
 | Required | No — omitting it is valid |
 | Null | Sending `dueDate: null` clears the due date |
 | Invalid format | Server returns `400` |
@@ -42,7 +42,14 @@ A todo is **overdue** when ALL of the following are true:
 2. `dueDate < today` (compared by date, ignoring time)
 3. `status !== 'done'`
 
-A completed (`done`) todo is never overdue, even if its due date is in the past.
+A completed (`done`) todo is never overdue, even if its due date is in the past. Overdue cards in Kanban/Lists should be visually highlighted with a light background color.
+
+---
+
+## UI Interactions
+
+- **Clearance:** The date picker must provide an explicit way (e.g., an "X" or "Clear" button) to remove a previously set date.
+- **Library:** Use `react-datepicker` for consistent calendar interaction.
 
 ---
 

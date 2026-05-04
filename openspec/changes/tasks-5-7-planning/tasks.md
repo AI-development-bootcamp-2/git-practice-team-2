@@ -97,14 +97,16 @@
 - [ ] A-6-8: Test: PUT with `dueDate: null` → clears the due date
 
 #### Frontend (Teammate D)
-- [ ] D-6-1: Add date input field to `AddTodo.jsx` (optional, type=date)
-- [ ] D-6-2: Update `api.js` `create()` to pass `dueDate` if provided
-- [ ] D-6-3: Display `dueDate` in `TodoItem.jsx` (formatted: "Due May 10")
-- [ ] D-6-4: Add overdue indicator in `TodoItem.jsx` (red label when overdue)
-- [ ] D-6-5: Define overdue = `dueDate < today AND status !== 'done'`
-- [ ] D-6-6: Test: create todo with due date → shows in card
-- [ ] D-6-7: Test: past due date + not done → overdue indicator visible
-- [ ] D-6-8: Test: past due date + done → no overdue indicator
+- [ ] D-6-0: Install `react-datepicker` dependency in `client/`
+- [ ] D-6-1: Add `DatePicker` to `AddTodo.jsx` with `isClearable` and `dateFormat="dd/MM/yyyy"`
+- [ ] D-6-2: Update `api.js` `create()` to pass `dueDate` (ISO string)
+- [ ] D-6-3: Display `dueDate` in `TodoItem.jsx` (formatted: `DD/MM/YYYY`)
+- [ ] D-6-4: Add overdue indicator and light red background highlight in `TodoItem.jsx`
+- [ ] D-6-5: Define overdue = `dueDate < today (start of day) AND status !== 'done'`
+- [ ] D-6-6: Test: create todo with due date → shows as DD/MM/YYYY in card
+- [ ] D-6-7: Test: past due date + not done → overdue label + light red highlight visible
+- [ ] D-6-8: Test: past due date + done → no overdue highlight
+- [ ] D-6-9: Test: clearing date in picker removes `dueDate` from todo object
 
 ---
 
