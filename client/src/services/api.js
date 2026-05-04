@@ -19,15 +19,7 @@ async function fetchApi(endpoint, options = {}) {
 
 export const api = {
   stats: {
-    // TODO: replace stub with real call once Adi's GET /api/todos/stats is merged
-    get: () => {
-      console.warn('[stats] Using mock data — replace with real endpoint when ready');
-      return Promise.resolve({
-        total: 3,
-        byStatus: { todo: 1, 'in-progress': 1, review: 0, done: 1 },
-        completionPct: 33.3,
-      });
-    },
+    get: () => fetchApi('/todos/stats'),
   },
   todos: {
     getAll: () => fetchApi('/todos'),

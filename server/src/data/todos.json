@@ -1,12 +1,5 @@
 [
   {
-    "id": "1",
-    "title": "Learn Git basics",
-    "status": "in-progress",
-    "createdAt": "2024-01-15T09:00:00.000Z",
-    "updatedAt": "2026-05-03T12:46:36.615Z"
-  },
-  {
     "id": "2",
     "title": "Practice merge conflicts",
     "status": "in-progress",
@@ -16,16 +9,16 @@
   {
     "id": "3",
     "title": "Build awesome features",
-    "status": "review",
+    "status": "todo",
     "createdAt": "2024-01-15T11:00:00.000Z",
-    "updatedAt": "2026-05-03T12:46:25.267Z"
+    "updatedAt": "2026-05-04T07:28:29.959Z"
   },
   {
     "id": "ee303ef7-acf5-44f9-b611-7dddd95b8245",
     "title": "ssas",
-    "status": "review",
+    "status": "done",
     "createdAt": "2026-05-03T12:47:16.623Z",
-    "updatedAt": "2026-05-03T12:47:20.426Z"
+    "updatedAt": "2026-05-04T07:28:21.764Z"
   },
   {
     "id": "78581e00-6d81-4cd2-876b-c81b3dba4294",
