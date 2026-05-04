@@ -4,7 +4,9 @@
       "Bash(Get-ChildItem -Path \"c:\\\\Users\\\\orika\\\\git-practice-team-2\" -Force)",
       "Bash(Select-Object Name, FullName)",
       "Bash(Format-Table -AutoSize)",
-      "Bash(npm install *)"
+      "Bash(npm install *)",
+      "Bash(Get-Content \"C:\\\\Users\\\\orika\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-orika-git-practice-team-2\\\\10d0fdce-9ea7-4651-a9e9-f1e490a54b61\\\\tasks\\\\b1dumlwr9.output\" -Wait -Tail 20)",
+      "Bash(npm list *)"
     ]
   }
 }
