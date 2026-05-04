@@ -62,7 +62,8 @@ No new API calls are made when the user types or changes a filter.
   if (filterPriority) visibleTodos = visibleTodos.filter(t => t.priority === filterPriority);
   ```
 - Render `<FilterBar ... />` above the board in the tasks view
-- Pass `visibleTodos` (not `todos`) to `<KanbanBoard />` as the `todos` prop
+- Derive `hasActiveFilters`: `const hasActiveFilters = !!searchTerm || !!filterStatus || !!filterPriority`
+- Pass `visibleTodos` (not `todos`) and `hasActiveFilters` to `<KanbanBoard />` and `<TodoList />`
 
 **What NOT to change:**
 - Do not move `loadTodos`, `handleAdd`, `handleDelete`, `handleStatusChange` — leave them in place
@@ -75,13 +76,17 @@ No new API calls are made when the user types or changes a filter.
 ### `client/src/components/KanbanBoard.jsx`
 
 **What to add:**
-- When all columns are empty (i.e. `todos.length === 0` from the filtered prop), render a no-results message:
+- Accept a `hasActiveFilters` boolean prop from `App.jsx`
+- When `todos.length === 0`, render an empty state before the `DndContext`:
   ```jsx
   if (todos.length === 0) {
-    return <div className="empty-state"><p>No tasks match your filters.</p></div>;
+    return (
+      <div className="empty-state">
+        <p>{hasActiveFilters ? 'No tasks match your filters.' : 'No tasks yet. Add one above!'}</p>
+      </div>
+    );
   }
   ```
-- Place this check **before** the `DndContext` render
 
 **What NOT to change:**
 - Drag-and-drop logic (`handleDragStart`, `handleDragEnd`) stays untouched
