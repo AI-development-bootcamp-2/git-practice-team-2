@@ -33,5 +33,12 @@
     "status": "in-progress",
     "createdAt": "2026-05-04T08:11:50.498Z",
     "updatedAt": "2026-05-04T08:21:09.241Z"
+  },
+  {
+    "id": "ce49969b-7686-469d-8abb-2bf8adab7367",
+    "title": "new task",
+    "status": "todo",
+    "createdAt": "2026-05-04T09:20:30.686Z",
+    "updatedAt": "2026-05-04T09:20:30.686Z"
   }
 ]
