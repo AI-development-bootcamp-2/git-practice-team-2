@@ -1,11 +1,11 @@
 import React from 'react';
 import TodoItem from './TodoItem';
 
-function TodoList({ todos, onStatusChange, onDelete }) {
+function TodoList({ todos, hasActiveFilters, onStatusChange, onDelete }) {
   if (todos.length === 0) {
     return (
       <div className="empty-state">
-        <p>No todos yet. Add one above!</p>
+        <p>{hasActiveFilters ? 'No tasks match your filters.' : 'No todos yet. Add one above!'}</p>
       </div>
     );
   }
