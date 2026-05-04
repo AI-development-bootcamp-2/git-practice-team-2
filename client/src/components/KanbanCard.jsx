@@ -22,6 +22,7 @@ function KanbanCard({ todo, onStatusChange, onDelete }) {
         <button
           className="kanban-delete-btn"
           onClick={() => onDelete(todo.id)}
+          onPointerDown={e => e.stopPropagation()}
           aria-label="Delete todo"
         >
           🗑️
