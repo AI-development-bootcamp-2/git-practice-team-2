@@ -35,17 +35,75 @@
     "updatedAt": "2026-05-04T08:21:09.241Z"
   },
   {
-    "id": "ce49969b-7686-469d-8abb-2bf8adab7367",
-    "title": "new task",
+    "id": "3a72d22b-785c-4c60-be45-0f7eee6ee911",
+    "title": "Test Task 1",
     "status": "todo",
-    "createdAt": "2026-05-04T09:20:30.686Z",
-    "updatedAt": "2026-05-04T09:20:30.686Z"
+    "dueDate": null,
+    "createdAt": "2026-05-04T09:14:48.160Z",
+    "updatedAt": "2026-05-04T09:14:48.183Z"
   },
   {
-    "id": "1705d8c7-07cb-4b87-8d84-2f8c4ee28290",
-    "title": "add task",
+    "id": "210dda83-8207-447a-b0ad-30828c61d9c9",
+    "title": "Test Task 2",
     "status": "todo",
-    "createdAt": "2026-05-04T09:23:08.861Z",
-    "updatedAt": "2026-05-04T09:23:08.861Z"
+    "dueDate": "2026-06-15",
+    "createdAt": "2026-05-04T09:14:48.171Z",
+    "updatedAt": "2026-05-04T09:14:48.171Z"
+  },
+  {
+    "id": "67e2a673-e3c7-463e-98aa-97dd33cc2119",
+    "title": "Valid Date",
+    "status": "todo",
+    "dueDate": "2026-12-31",
+    "createdAt": "2026-05-04T09:19:27.453Z",
+    "updatedAt": "2026-05-04T09:19:27.454Z"
+  },
+  {
+    "id": "0fafce80-a58a-4487-b67c-9ef847a338d2",
+    "title": "Valid DateTime",
+    "status": "todo",
+    "dueDate": "2026-06-15T10:00:00.000Z",
+    "createdAt": "2026-05-04T09:19:27.461Z",
+    "updatedAt": "2026-05-04T09:19:27.461Z"
+  },
+  {
+    "id": "772ac9c4-247c-4a04-921a-df63c45c1829",
+    "title": "Explicit Null",
+    "status": "todo",
+    "dueDate": null,
+    "createdAt": "2026-05-04T09:19:27.464Z",
+    "updatedAt": "2026-05-04T09:19:27.464Z"
+  },
+  {
+    "id": "cd4f82df-c2a8-4c74-ac84-1725d37d15dd",
+    "title": "Omitted Date",
+    "status": "todo",
+    "dueDate": null,
+    "createdAt": "2026-05-04T09:19:27.466Z",
+    "updatedAt": "2026-05-04T09:19:27.466Z"
+  },
+  {
+    "id": "d18327e7-9d1f-4ab4-97b9-87b9e1b770b9",
+    "title": "Far Future",
+    "status": "todo",
+    "dueDate": "2099-01-01",
+    "createdAt": "2026-05-04T09:19:27.476Z",
+    "updatedAt": "2026-05-04T09:19:27.476Z"
+  },
+  {
+    "id": "cea0b390-b93f-436a-8bac-daf3ae9bdf39",
+    "title": "Far Past",
+    "status": "todo",
+    "dueDate": "1970-01-01",
+    "createdAt": "2026-05-04T09:19:27.478Z",
+    "updatedAt": "2026-05-04T09:19:27.478Z"
+  },
+  {
+    "id": "69485472-7f5d-4c38-809d-4404d5ec7b7b",
+    "title": "Transition Test",
+    "status": "todo",
+    "dueDate": "2026-05-05",
+    "createdAt": "2026-05-04T09:19:27.479Z",
+    "updatedAt": "2026-05-04T09:19:27.483Z"
   }
 ]

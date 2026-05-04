@@ -87,14 +87,14 @@
 ### Task 6 — Due Date
 
 #### Backend (Teammate A)
-- [ ] A-6-1: Update `todoService.create()` to accept and store optional `dueDate`
-- [ ] A-6-2: Update `todoService.update()` to allow updating `dueDate`
-- [ ] A-6-3: Add `dueDate` format validation in `POST /` route (ISO string or null)
-- [ ] A-6-4: Add `dueDate` format validation in `PUT /:id` route
-- [ ] A-6-5: Test: POST without `dueDate` → response has no `dueDate` (or `null`)
-- [ ] A-6-6: Test: POST with valid `dueDate` → stored and returned
-- [ ] A-6-7: Test: POST with invalid `dueDate` (e.g. `"not-a-date"`) → `400`
-- [ ] A-6-8: Test: PUT with `dueDate: null` → clears the due date
+- [x] A-6-1: Update `todoService.create()` to accept and store optional `dueDate`
+- [x] A-6-2: Update `todoService.update()` to allow updating `dueDate`
+- [x] A-6-3: Add `dueDate` format validation in `POST /` route (ISO string or null)
+- [x] A-6-4: Add `dueDate` format validation in `PUT /:id` route
+- [x] A-6-5: Test: POST without `dueDate` → response has no `dueDate` (or `null`)
+- [x] A-6-6: Test: POST with valid `dueDate` → stored and returned
+- [x] A-6-7: Test: POST with invalid `dueDate` (e.g. `"not-a-date"`) → `400`
+- [x] A-6-8: Test: PUT with `dueDate: null` → clears the due date
 
 #### Frontend (Teammate D)
 - [ ] D-6-0: Install `react-datepicker` dependency in `client/`
