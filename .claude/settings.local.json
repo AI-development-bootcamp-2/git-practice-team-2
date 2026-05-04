@@ -3,7 +3,12 @@
     "allow": [
       "Bash(Get-ChildItem -Path \"c:\\\\Users\\\\orika\\\\git-practice-team-2\" -Force)",
       "Bash(Select-Object Name, FullName)",
-      "Bash(Format-Table -AutoSize)"
+      "Bash(Format-Table -AutoSize)",
+      "Bash(openspec status *)",
+      "Bash(openspec instructions *)",
+      "Bash(timeout 5 node index.js)",
+      "Bash *",
+      "Bash(npm run *)"
     ]
   }
 }

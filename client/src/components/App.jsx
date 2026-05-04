@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { api } from '../services/api';
 import KanbanBoard from './KanbanBoard';
 import AddTodo from './AddTodo';
+import { StatisticsPage } from './StatisticsPage';
+import { Header } from './Header';
 import '../App.css';
 
 function App() {
+  const [view, setView] = useState('tasks');
   const [todos, setTodos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -35,21 +38,11 @@ function App() {
     }
   };
 
-<<<<<<< HEAD
   const handleDelete = async (id) => {
     try {
       await api.todos.delete(id);
       setTodos(todos.filter(t => t.id !== id));
-=======
-  const handleStatusChange = async (id, newStatus) => {
-    try {
-      const updated = await api.todos.update(id, { status: newStatus });
-      setTodos(todos.map(t => t.id === id ? updated : t));
->>>>>>> Development
-    } catch (err) {
-      setError(err.message);
-    }
-  };
+
 
   const handleStatusChange = async (id, newStatus) => {
     try {
@@ -62,19 +55,21 @@ function App() {
 
   return (
     <div className="app">
-      <header className="header">
-        <h1>Todo App</h1>
-      </header>
+      <Header view={view} onViewChange={setView} />
 
       <main className="main">
-        <AddTodo onAdd={handleAdd} />
+        {view === 'statistics' ? (
+          <StatisticsPage />
+        ) : (
+          <>
+            <AddTodo onAdd={handleAdd} />
 
-        {error && (
-          <div className="error-message">
-            {error}
-            <button onClick={() => setError(null)}>x</button>
-          </div>
-        )}
+            {error && (
+              <div className="error-message">
+                {error}
+                <button onClick={() => setError(null)}>x</button>
+              </div>
+            )}
 
         {loading ? (
           <div className="loading">Loading...</div>

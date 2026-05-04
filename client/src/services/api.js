@@ -18,6 +18,9 @@ async function fetchApi(endpoint, options = {}) {
 }
 
 export const api = {
+  stats: {
+    get: () => fetchApi('/todos/stats'),
+  },
   todos: {
     getAll: () => fetchApi('/todos'),
 
