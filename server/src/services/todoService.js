@@ -37,6 +37,7 @@ export const todoService = {
       id: crypto.randomUUID(),
       title: todoData.title,
       status: todoData.status || 'todo',
+      dueDate: todoData.dueDate ?? null,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     };
