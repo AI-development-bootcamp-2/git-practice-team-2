@@ -42,7 +42,10 @@ function App() {
     try {
       await api.todos.delete(id);
       setTodos(todos.filter(t => t.id !== id));
-
+    } catch (err) {
+      setError(err.message);
+    }
+  };
 
   const handleStatusChange = async (id, newStatus) => {
     try {
@@ -71,14 +74,16 @@ function App() {
               </div>
             )}
 
-        {loading ? (
-          <div className="loading">Loading...</div>
-        ) : (
-          <KanbanBoard
-            todos={todos}
-            onStatusChange={handleStatusChange}
-            onDelete={handleDelete}
-          />
+            {loading ? (
+              <div className="loading">Loading...</div>
+            ) : (
+              <KanbanBoard
+                todos={todos}
+                onStatusChange={handleStatusChange}
+                onDelete={handleDelete}
+              />
+            )}
+          </>
         )}
       </main>
     </div>
