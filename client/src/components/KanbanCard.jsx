@@ -2,7 +2,7 @@ import React from 'react';
 import { useDraggable } from '@dnd-kit/core';
 import { getNextStatus, getPrevStatus } from '../utils/status';
 
-function KanbanCard({ todo, onStatusChange }) {
+function KanbanCard({ todo, onStatusChange, onDelete }) {
   const { attributes, listeners, setNodeRef, isDragging } = useDraggable({
     id: todo.id,
     data: { status: todo.status },
@@ -15,10 +15,18 @@ function KanbanCard({ todo, onStatusChange }) {
     <div
       ref={setNodeRef}
       className={`kanban-card${isDragging ? ' dragging' : ''}`}
-      {...listeners}
       {...attributes}
     >
-      <span className="kanban-card-title">{todo.title}</span>
+      <div className="kanban-card-header" {...listeners}>
+        <span className="kanban-card-title">{todo.title}</span>
+        <button
+          className="kanban-delete-btn"
+          onClick={() => onDelete(todo.id)}
+          aria-label="Delete todo"
+        >
+          🗑️
+        </button>
+      </div>
       <div className="kanban-card-actions">
         {prev && (
           <button

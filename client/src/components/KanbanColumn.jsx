@@ -3,7 +3,7 @@ import { useDroppable } from '@dnd-kit/core';
 import { STATUS_LABELS } from '../utils/status';
 import KanbanCard from './KanbanCard';
 
-function KanbanColumn({ status, todos, onStatusChange }) {
+function KanbanColumn({ status, todos, onStatusChange, onDelete }) {
   const { setNodeRef, isOver } = useDroppable({ id: status });
 
   return (
@@ -14,7 +14,7 @@ function KanbanColumn({ status, todos, onStatusChange }) {
       </div>
       <div ref={setNodeRef} className="kanban-column-body">
         {todos.map(todo => (
-          <KanbanCard key={todo.id} todo={todo} onStatusChange={onStatusChange} />
+          <KanbanCard key={todo.id} todo={todo} onStatusChange={onStatusChange} onDelete={onDelete} />
         ))}
       </div>
     </div>

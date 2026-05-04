@@ -4,7 +4,7 @@ import { STATUS_ORDER } from '../utils/status';
 import KanbanColumn from './KanbanColumn';
 import KanbanCard from './KanbanCard';
 
-function KanbanBoard({ todos, onStatusChange }) {
+function KanbanBoard({ todos, onStatusChange, onDelete }) {
   const [activeId, setActiveId] = useState(null);
 
   const sensors = useSensors(useSensor(PointerSensor));
@@ -41,6 +41,7 @@ function KanbanBoard({ todos, onStatusChange }) {
             status={status}
             todos={todosByStatus[status]}
             onStatusChange={onStatusChange}
+            onDelete={onDelete}
           />
         ))}
       </div>

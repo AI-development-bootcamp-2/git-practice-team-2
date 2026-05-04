@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { api } from '../services/api';
-import TodoList from './TodoList';
 import KanbanBoard from './KanbanBoard';
 import AddTodo from './AddTodo';
 import '../App.css';
@@ -9,7 +8,6 @@ function App() {
   const [todos, setTodos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [view, setView] = useState('list');
 
   useEffect(() => {
     loadTodos();
@@ -32,17 +30,6 @@ function App() {
     try {
       const newTodo = await api.todos.create(title);
       setTodos([...todos, newTodo]);
-    } catch (err) {
-      setError(err.message);
-    }
-  };
-
-  const handleToggle = async (id) => {
-    try {
-      const todo = todos.find(t => t.id === id);
-      const newStatus = todo.status === 'done' ? 'todo' : 'done';
-      const updated = await api.todos.update(id, { status: newStatus });
-      setTodos(todos.map(t => t.id === id ? updated : t));
     } catch (err) {
       setError(err.message);
     }
@@ -82,29 +69,12 @@ function App() {
           </div>
         )}
 
-        <div className="view-toggle">
-          <button
-            className={`view-toggle-btn${view === 'list' ? ' active' : ''}`}
-            onClick={() => setView('list')}
-          >
-            List
-          </button>
-          <button
-            className={`view-toggle-btn${view === 'board' ? ' active' : ''}`}
-            onClick={() => setView('board')}
-          >
-            Board
-          </button>
-        </div>
-
         {loading ? (
           <div className="loading">Loading...</div>
-        ) : view === 'board' ? (
-          <KanbanBoard todos={todos} onStatusChange={handleStatusChange} />
         ) : (
-          <TodoList
+          <KanbanBoard
             todos={todos}
-            onToggle={handleToggle}
+            onStatusChange={handleStatusChange}
             onDelete={handleDelete}
           />
         )}
