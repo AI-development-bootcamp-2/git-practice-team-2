@@ -17,7 +17,7 @@
 - [x] D-5-5: Add `searchTerm`, `filterStatus`, `filterPriority` state to `App.jsx`
 - [x] D-5-6: Compute `visibleTodos` in `App.jsx` (search + status + priority, AND logic) and pass it to `<KanbanBoard />` as the `todos` prop instead of the raw `todos`
 - [x] D-5-7: Render `<FilterBar />` in `App.jsx` above the board; derive `hasActiveFilters = !!searchTerm || !!filterStatus || !!filterPriority` and pass it to `<KanbanBoard />` and `<TodoList />`
-- [ ] D-5-8: Add no-results state to `KanbanBoard.jsx` — accept `hasActiveFilters` boolean prop from `App.jsx`; when `todos.length === 0 && hasActiveFilters` render `"No tasks match your filters."`; when `todos.length === 0 && !hasActiveFilters` render `"No tasks yet. Add one above!"`; place check before the `DndContext`
+- [x] D-5-8: Add no-results state to `KanbanBoard.jsx` — accept `hasActiveFilters` boolean prop from `App.jsx`; when `todos.length === 0 && hasActiveFilters` render `"No tasks match your filters."`; when `todos.length === 0 && !hasActiveFilters` render `"No tasks yet. Add one above!"`; place check before the `DndContext`
 - [ ] D-5-9: Add no-results state to `TodoList.jsx` — accept `hasActiveFilters` boolean prop from `App.jsx`; show `"No tasks match your filters."` when `todos.length === 0 && hasActiveFilters`, keep existing `"No todos yet. Add one above!"` when no filters are active
 
 ## Test checklist

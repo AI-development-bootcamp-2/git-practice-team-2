@@ -4,7 +4,7 @@ import { STATUS_ORDER } from '../utils/status';
 import KanbanColumn from './KanbanColumn';
 import KanbanCard from './KanbanCard';
 
-function KanbanBoard({ todos, onStatusChange, onDelete }) {
+function KanbanBoard({ todos, hasActiveFilters, onStatusChange, onDelete }) {
   const [activeId, setActiveId] = useState(null);
 
   const sensors = useSensors(useSensor(PointerSensor));
@@ -30,6 +30,14 @@ function KanbanBoard({ todos, onStatusChange, onDelete }) {
     if (targetStatus === currentStatus) return;
 
     onStatusChange(active.id, targetStatus);
+  }
+
+  if (todos.length === 0) {
+    return (
+      <div className="empty-state">
+        <p>{hasActiveFilters ? 'No tasks match your filters.' : 'No tasks yet. Add one above!'}</p>
+      </div>
+    );
   }
 
   return (
