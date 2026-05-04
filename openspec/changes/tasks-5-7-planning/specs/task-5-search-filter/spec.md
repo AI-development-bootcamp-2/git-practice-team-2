@@ -12,7 +12,7 @@ Implemented in two phases: frontend-only (phase 1, default), optional backend qu
 The client already fetches all todos on load. Filtering in memory is fast, simple, and requires no API changes.  
 Backend query params are added as a non-breaking enhancement for phase 2 — callers without params see identical behavior.
 
-**Priority filter:** NOT READY. The `priority` field does not exist in the codebase. This sub-feature is blocked until priority is implemented (separate task, not in scope here). Do not stub or simulate it.
+**Priority filter:** Included as a mock-only dropdown (`high | medium | low`). The `priority` field does not yet exist on todo objects — when `todo.priority` is `undefined`, the todo passes the filter for any selected value. No simulation or fake data is injected. The filter becomes live automatically when the backend adds `priority`.
 
 ---
 
@@ -25,15 +25,28 @@ Backend query params are added as a non-breaking enhancement for phase 2 — cal
 
 ## Feature: Filter by status
 
-- User selects a status from: All | todo | in-progress | review | done
+- User selects a status from a **dropdown**: `All | To Do | In Progress | Review | Done`
 - Only todos matching the selected status are shown
+- "All" = no filter applied (`null`)
+- Filter is applied client-side
+
+## Feature: Filter by priority
+
+- User selects a priority from a **dropdown**: `All | High | Medium | Low`
+- Values: `null | 'high' | 'medium' | 'low'`
 - "All" = no filter applied
 - Filter is applied client-side
+- **Mock phase:** while `todo.priority` is undefined on all todos, every todo passes this filter — no effect, no crash
 
 ## Feature: Combined search + filter
 
-- Both filters apply simultaneously (AND logic)
-- A todo must match both the search term and the selected status to be shown
+- All three filters apply simultaneously (AND logic)
+- A todo must match the search term, the selected status, AND the selected priority to be shown
+
+## Feature: No-results state
+
+- When the filtered result set is empty (at least one filter is active), display the message: **"No tasks match your filters."**
+- Distinct from the "No todos yet" state (shown when no todos exist at all and no filters are active)
 
 ---
 
@@ -57,7 +70,7 @@ Backend query params are added as a non-breaking enhancement for phase 2 — cal
 
 ## Out of scope
 
-- Priority filter (field not implemented)
+- Priority filter backend implementation (`priority` field on the data model — separate task)
 - Sorting
 - Pagination
 - Saved/persistent filters
