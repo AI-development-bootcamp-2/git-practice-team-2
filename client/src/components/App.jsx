@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { api } from '../services/api';
 import TodoList from './TodoList';
 import AddTodo from './AddTodo';
+import { StatisticsPage } from './StatisticsPage';
+import { Header } from './Header';
 import '../App.css';
 
 function App() {
+  const [view, setView] = useState('tasks');
   const [todos, setTodos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -55,28 +58,32 @@ function App() {
 
   return (
     <div className="app">
-      <header className="header">
-        <h1>Todo App</h1>
-      </header>
+      <Header view={view} onViewChange={setView} />
 
       <main className="main">
-        <AddTodo onAdd={handleAdd} />
-
-        {error && (
-          <div className="error-message">
-            {error}
-            <button onClick={() => setError(null)}>x</button>
-          </div>
-        )}
-
-        {loading ? (
-          <div className="loading">Loading...</div>
+        {view === 'statistics' ? (
+          <StatisticsPage />
         ) : (
-          <TodoList
-            todos={todos}
-            onStatusChange={handleStatusChange}
-            onDelete={handleDelete}
-          />
+          <>
+            <AddTodo onAdd={handleAdd} />
+
+            {error && (
+              <div className="error-message">
+                {error}
+                <button onClick={() => setError(null)}>x</button>
+              </div>
+            )}
+
+            {loading ? (
+              <div className="loading">Loading...</div>
+            ) : (
+              <TodoList
+                todos={todos}
+                onStatusChange={handleStatusChange}
+                onDelete={handleDelete}
+              />
+            )}
+          </>
         )}
       </main>
     </div>

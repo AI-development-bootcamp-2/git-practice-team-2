@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(openspec status *)",
+      "Bash(openspec instructions *)",
+      "Bash(timeout 5 node index.js)",
+      "Bash *",
+      "Bash(npm run *)"
+    ]
+  }
+}
