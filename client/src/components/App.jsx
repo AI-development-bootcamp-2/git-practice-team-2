@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { api } from '../services/api';
-import TodoList from './TodoList';
+import KanbanBoard from './KanbanBoard';
 import AddTodo from './AddTodo';
 import '../App.css';
 
@@ -35,21 +35,19 @@ function App() {
     }
   };
 
-  const handleToggle = async (id) => {
+  const handleDelete = async (id) => {
     try {
-      const todo = todos.find(t => t.id === id);
-      const newStatus = todo.status === 'done' ? 'todo' : 'done';
-      const updated = await api.todos.update(id, { status: newStatus });
-      setTodos(todos.map(t => t.id === id ? updated : t));
+      await api.todos.delete(id);
+      setTodos(todos.filter(t => t.id !== id));
     } catch (err) {
       setError(err.message);
     }
   };
 
-  const handleDelete = async (id) => {
+  const handleStatusChange = async (id, newStatus) => {
     try {
-      await api.todos.delete(id);
-      setTodos(todos.filter(t => t.id !== id));
+      const updated = await api.todos.update(id, { status: newStatus });
+      setTodos(todos.map(t => t.id === id ? updated : t));
     } catch (err) {
       setError(err.message);
     }
@@ -74,9 +72,9 @@ function App() {
         {loading ? (
           <div className="loading">Loading...</div>
         ) : (
-          <TodoList
+          <KanbanBoard
             todos={todos}
-            onToggle={handleToggle}
+            onStatusChange={handleStatusChange}
             onDelete={handleDelete}
           />
         )}
